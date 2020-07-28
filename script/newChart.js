@@ -35,7 +35,7 @@ var Chart = function (input) {
 			};
 			canvas.width = 1600; // this is a hardcoded fix for blurry canvas
 			canvas.height = 1200; // fixes the problem to some extent
-			canvas.style.width = "800"; // should be looked into further
+			canvas.style.width = "800px"; // should be looked into further
 			canvas.style.height = "600px"; //
 			chartWidth = canvasWidth - margin.left - margin.right;
 			chartHeight = canvasHeight - margin.top - margin.bottom;
