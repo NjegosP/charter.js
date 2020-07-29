@@ -1,13 +1,4 @@
 var Chart = function (input) {
-	function setupCanvas(canvas) {
-		var dpr = window.devicePixelRatio || 1;
-		var rect = canvas.getBoundingClientRect();
-		canvas.width = rect.width * dpr;
-		canvas.height = rect.height * dpr;
-		var ctx = canvas.getContext("2d");
-		//ctx.scale(dpr, dpr);
-		return ctx;
-	}
 	var context,
 		canvasHeight,
 		canvasWidth,
@@ -25,10 +16,15 @@ var Chart = function (input) {
 		originalCoordinates,
 		render = function (input) {
 			var canvas = document.getElementById(input.canvasID);
-			inputObject = getInputObj(input);
-			context = setupCanvas(canvas);
 			canvasHeight = canvas.height;
 			canvasWidth = canvas.width;
+			canvas.width = 1600; // this is a hardcoded fix for blurry canvas
+			canvas.height = 1200; // fixes the problem to some extent
+			canvas.style.width = "800px"; // should be looked into further
+			canvas.style.height = "600px"; //
+			inputObject = getInputObj(input);
+			context = canvas.getContext("2d");
+			context.scale(2, 2);
 			canvasMiddle = {x: canvasWidth / 2, y: canvasHeight / 2};
 			toggleArray = new Array(inputObject.dataY.length).fill(null);
 			isMouseOverChartPart = new Array(inputObject.dataY.length).fill(null);
@@ -556,7 +552,7 @@ var exampleData2 = {
 		{title: "Australia", data: 215},
 		{title: "Antarctica", data: 15},
 	],
-	radius: 180,
+	radius: 280,
 
 	colors: [
 		"rgb(43, 144, 143,1)",
